@@ -280,7 +280,7 @@ services:
       - '127.0.0.1:8081:80'
     environment:
       PMA_HOST: mysql-nro
-      PMA_ABSOLUTE_URI: https://data.chienbinhrongthieng.online/
+      PMA_ABSOLUTE_URI: https://data.ngocrongdark.com/
     depends_on:
       - mysql-nro
 
@@ -358,8 +358,7 @@ services:
     container_name: nginx
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
-      - ./fullchain.pem:/etc/letsencrypt/live/api.chienbinhrongthieng.online/fullchain.pem:ro
-      - ./privkey.pem:/etc/letsencrypt/live/api.chienbinhrongthieng.online/privkey.pem:ro
+      - /etc/letsencrypt:/etc/letsencrypt:ro
       - ./htpasswd:/etc/nginx/.htpasswd:ro
     network_mode: "host"
     restart: always
