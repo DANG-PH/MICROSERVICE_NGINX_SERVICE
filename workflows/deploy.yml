@@ -9,19 +9,19 @@ jobs:
   trigger:
     runs-on: ubuntu-latest
     steps:
-      - name: Trigger dragonboy-devops-service
+      - name: Trigger MICROSERVICE_DEPLOY
         run: |
           curl -X POST \
             -H "Authorization: token ${{ secrets.DEPLOY_TOKEN }}" \
             -H "Accept: application/vnd.github.v3+json" \
-            https://api.github.com/repos/DANG-PH/dragonboy-devops-service/dispatches \
+            https://api.github.com/repos/DANG-PH/MICROSERVICE_DEPLOY/dispatches \
             -d '{
               "event_type": "deploy",
               "client_payload": {
-                "service": "nginx-service",
-                "dir": "/root/MICROSERVICE_NGINX_SERVICE",
-                "port": "docker",
-                "skip_health_check": "true",
+                "service": "api-gateway",
+                "dir": "/root/MICROSERVICE_API_GATEWAY",
+                "port": "3000",
+                "skip_health_check": "false",
                 "actor": "${{ github.actor }}",
                 "commit": "${{ github.sha }}",
                 "message": "${{ github.event.head_commit.message }}"
